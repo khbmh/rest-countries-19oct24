@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-function Country({ info }) {
-  console.log(info);
-
+function Country({ info, updateLovedCountries, removeLovedCountry }) {
+  // console.log(info);
+  // console.log(updateLovedCountries);
   const [react, setReact] = useState(false);
 
   const giveReact = () => {
     setReact(!react);
+    !react ? updateLovedCountries(info) : removeLovedCountry(info);
   };
 
   return (
@@ -33,15 +34,18 @@ function Country({ info }) {
           <p>Population: {info?.population} </p>
           <p>Capital: {info?.capital} </p>
         </div>
-        <img
-          onClick={giveReact}
-          className={`cursor-pointer w-10 ${
-            react ? 'grayscale-0' : 'grayscale opacity-[.9]'
-          }`}
-          // src="https://cdn-icons-png.flaticon.com/128/4926/4926592.png"
-          src="https://cdn3d.iconscout.com/3d/premium/thumb/love-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--heart-valentine-romance-romantic-sign-symbols-illustrations-2676671.png?f=webp"
-          alt="react"
-        />
+        <div className="flex items-center justify-between">
+          <img
+            onClick={giveReact}
+            className={`cursor-pointer w-10 ${
+              react ? 'grayscale-0' : 'grayscale opacity-[.9]'
+            }`}
+            // src="https://cdn-icons-png.flaticon.com/128/4926/4926592.png"
+            src="https://cdn3d.iconscout.com/3d/premium/thumb/love-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--heart-valentine-romance-romantic-sign-symbols-illustrations-2676671.png?f=webp"
+            alt="react"
+          />
+          {/* <button className='px-4 py-1 bg-slate-700 rounded-full'>Add to Wishlist</button> */}
+        </div>
       </div>
     </div>
   );
